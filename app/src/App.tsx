@@ -3,10 +3,34 @@ import clsx from 'clsx';
 import Scanner from './components/Scanner';
 import Generator from './components/Generator';
 import History from './components/History';
+import { useUpdateChecker } from './hooks/useUpdateChecker';
 
 function App() {
+  const { isUpdateAvailable, latestVersion, downloadUrl, updateNotes } = useUpdateChecker();
+
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-background-light dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      
+      {/* Auto-Update Banner */}
+      {isUpdateAvailable && (
+        <div className="absolute top-safe w-full z-50 px-4 pt-2 animate-in slide-in-from-top-4 duration-500 fade-in">
+          <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-primary/20 flex flex-col items-center text-center">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
+              <span className="material-symbols-outlined">system_update</span>
+            </div>
+            <h3 className="font-bold text-[15px]">Update Available v{latestVersion}</h3>
+            {updateNotes && <p className="text-xs text-slate-500 mt-1 mb-3">{updateNotes}</p>}
+            <a 
+              href={downloadUrl || '#'} 
+              target="_blank" rel="noopener noreferrer"
+              className="mt-3 w-full py-2.5 bg-primary text-white rounded-xl text-sm font-bold shadow-md shadow-primary/20 hover:bg-primary/90 transition-colors"
+            >
+              Download Update
+            </a>
+          </div>
+        </div>
+      )}
+
       <main className="flex-1 relative overflow-hidden">
         <Routes>
           <Route path="/" element={<Scanner />} />
