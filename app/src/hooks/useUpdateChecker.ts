@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import packageJson from '../../package.json';
 
 // REPOSITORY_URL: Update this to point to the raw version of version.json on your GitHub repository
-const VERSION_URL = 'https://raw.githubusercontent.com/Utso/UdayQR/main/app/public/version.json';
+const VERSION_URL = 'https://raw.githubusercontent.com/utsogharami5-source/Uday-QR/main/app/public/version.json';
 
 interface VersionData {
   version: string;
