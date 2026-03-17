@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">UdayQR</string>
+    <string name="title_activity_main">UdayQR</string>
+    <string name="package_name">com.uday.qr</string>
+    <string name="custom_url_scheme">com.uday.qr</string>
+</resources>

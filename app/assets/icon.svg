@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <!-- Transparent Background -->
+    
+    <!-- Outer Rounded Frame -->
+    <rect x="150" y="150" width="724" height="724" rx="150" fill="none" stroke="#2563EB" stroke-width="60" />
+
+    <!-- Top Left -->
+    <path d="M250 250 h 180 v 180 h -180 Z" stroke="#2563EB" stroke-width="40" fill="none" rx="30" />
+    <path d="M300 300 h 80 v 80 h -80 Z" fill="#2563EB" rx="15" />
+    
+    <!-- Top Right -->
+    <path d="M594 250 h 180 v 180 h -180 Z" stroke="#2563EB" stroke-width="40" fill="none" rx="30" />
+    <path d="M644 300 h 80 v 80 h -80 Z" fill="#2563EB" rx="15" />
+
+    <!-- Bottom Left -->
+    <path d="M250 594 h 180 v 180 h -180 Z" stroke="#2563EB" stroke-width="40" fill="none" rx="30" />
+    <path d="M300 644 h 80 v 80 h -80 Z" fill="#2563EB" rx="15" />
+
+    <!-- Bottom Right (Dynamic Pattern) -->
+    <circle cx="684" cy="684" r="40" fill="#2563EB" />
+    <rect x="594" y="594" width="60" height="60" fill="#2563EB" rx="15" />
+    <rect x="714" y="594" width="60" height="60" fill="#2563EB" rx="15" />
+    <rect x="594" y="714" width="60" height="60" fill="#2563EB" rx="15" />
+</svg>

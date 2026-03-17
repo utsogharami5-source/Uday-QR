@@ -1,0 +1,65 @@
+
+# Master PRD: Core Logic & Architecture
+**Project Name:** Uday QR 
+**Platform:** Android Exclusive
+**Focus:** Functional Requirements, Data Flow, and System Architecture
+
+## 1. Core Functional Requirements
+
+### A. The Scanner Engine (Read & Parse)
+The scanner must capture frames from the device camera, detect QR codes, and parse the data into actionable outputs.
+
+* **Camera Initialization:** Request hardware camera access on launch. Handle edge cases (e.g., camera in use by another app, hardware failure).
+* **Auto-Focus & Flashlight:** Enable continuous auto-focus. Provide a method to toggle the device torch (requires checking if the device actually has a flash).
+* **Payload Parsing:** The app must parse the raw string data from the QR code and categorize it to trigger the correct system action:
+    * **HTTP/HTTPS URLs:** Validate as a URL. Action: Open in default Android browser.
+    * **WIFI (WPA/WEP):** Parse SSID, Password, and Encryption type. Action: Trigger Android Wi-Fi connection intent.
+    * **VCard/MECARD:** Parse Name, Phone, Email. Action: Open Android Contacts app to save the new contact.
+    * **Plain Text:** Action: Copy to device clipboard.
+* **Image Scanning (Gallery):** Allow the user to select an image file (JPG/PNG) from Android storage and run the QR detection algorithm on the static image file.
+
+### B. The Generator Engine (Encode & Export)
+The generator must take user input, encode it into a standard QR matrix, and output a high-fidelity image file.
+
+* **Input Validation:** * Ensure URLs have proper formatting (adding `https://` if missing).
+    * Enforce character limits for plain text to ensure the QR code does not become too dense to scan.
+* **Real-Time Encoding:** The QR matrix data should update continuously in the background as the user types, feeding the new data string to your UI.
+* **Export & Sharing:** * **Save to Device:** Convert the QR widget/matrix into a PNG or JPEG byte array. Save it to the `Pictures` or `Downloads` directory using Android's MediaStore API (to comply with modern Android Scoped Storage rules).
+    * **Share Intent:** Generate a temporary image file in the app's cache directory and pass it to the native Android Share Sheet (`ACTION_SEND` intent) to share via WhatsApp, Email, etc.
+
+### C. History & Local Storage
+Maintain a record of user activity so they do not lose generated or scanned data.
+
+* **Auto-Save:** Every successful scan and every generated code must be automatically logged.
+* **Data Structure:** Each entry needs:
+    * `id` (Unique Identifier)
+    * `type` (String: URL, Text, WiFi, Contact)
+    * `content` (The raw string data)
+    * `timestamp` (Date and time of creation/scan)
+* **Management:** Users must be able to delete individual items or clear the entire history database.
+
+---
+
+## 2. Android Permissions Required
+
+To function correctly, the app must request and handle the following permissions in the `AndroidManifest.xml` and at runtime:
+
+| Permission | Purpose |
+| :--- | :--- |
+| `android.permission.CAMERA` | To access the device camera for live scanning. |
+| `android.permission.FLASHLIGHT` | To toggle the torch during low-light scanning. |
+| `android.permission.READ_MEDIA_IMAGES` | To scan QR codes from photos in the gallery (Android 13+). |
+| `android.permission.READ_EXTERNAL_STORAGE` | To scan QR codes from photos in the gallery (Android 12 and below). |
+| `android.permission.INTERNET` | Optional: Only needed if you plan to fetch website metadata (like a page title) after scanning a URL. |
+
+---
+
+## 3. Recommended Backend/Storage Architecture
+
+Since this app operates primarily offline, a heavy cloud database is not required. Everything should be handled on-device for maximum speed and privacy.
+
+* **Local Database:** Use a lightweight NoSQL database (like Hive for Flutter, or Room for native Android) to store the History logs. It is incredibly fast and requires zero setup for the user.
+* **State Management:** Use a reactive state manager to pass data between your camera logic and your Stitch UI (e.g., when the camera detects a code, it updates a state variable that immediately triggers your UI modal to pop up).
+
+---
+

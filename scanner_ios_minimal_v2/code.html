@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007bff",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .viewfinder-border {
+            box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.4);
+        }
+        .scanner-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #007bff, transparent);
+            box-shadow: 0 0 15px #007bff;
+        }
+        .frosted-glass {
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative mx-auto max-w-md h-screen overflow-hidden bg-slate-900 flex flex-col">
+<!-- Camera Viewport (Simulated with Background) -->
+<div class="absolute inset-0 z-0">
+<img alt="Document lying on a wooden desk top view" class="w-full h-full object-cover" data-alt="Document lying on a wooden desk top view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW_f_-9h0JJWv1PQCyWBjLBRbHTZOYfpw2izyDEa_KSabpQzV5BaIgfPvEvcjXra8hGGnSBD9QdOWpi_DXEwjLyztWCfQa4ewqrLR1eHaX4SSWu5luIuRmVJhHvxaQbv4Jl2al5G7SZ4G0oYDtFVtzk6RLzIXLf0zvrefOZGhghK6kqryRgW6dTHreKX8WWTbd1qtqKTc6XkjEis_juDV8HXDNEfdog74fuDKFHJaxLPtvd12uZVihuSW8qb9lTtpX_DY09Ci-W3U"/>
+</div>
+<!-- Viewfinder Overlay -->
+<div class="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+<div class="relative w-72 h-96 rounded-xl border-2 border-white/50 viewfinder-border overflow-hidden">
+<!-- Scanning Line -->
+<div class="scanner-line absolute w-full top-1/2 left-0 transform -translate-y-1/2"></div>
+<!-- Corner Brackets -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+</div>
+<p class="mt-8 text-white font-medium text-sm tracking-wide bg-black/40 px-4 py-1.5 rounded-full">Position document in the frame</p>
+</div>
+<!-- Header -->
+<div class="relative z-20 flex items-center justify-between p-6 text-white">
+<button class="size-10 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/40 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="text-lg font-semibold tracking-tight">Document Scanner</h1>
+<button class="size-10 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/40 transition-colors">
+<span class="material-symbols-outlined text-primary">auto_fix_high</span>
+</button>
+</div>
+<!-- Spacer for content -->
+<div class="flex-1"></div>
+<!-- Bottom Controls & Navigation -->
+<div class="relative z-20 px-4 pb-8">
+<!-- Main Action Bar -->
+<div class="frosted-glass rounded-xl p-6 flex items-center justify-between mb-4 shadow-2xl border border-white/20">
+<!-- Gallery Trigger -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">photo_library</span>
+</div>
+<span class="text-[10px] font-bold uppercase text-slate-500 tracking-tighter">Gallery</span>
+</button>
+<!-- Shutter Button -->
+<button class="relative size-20 rounded-full border-4 border-primary p-1 hover:scale-105 transition-transform active:scale-95">
+<div class="w-full h-full rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined text-white text-3xl">photo_camera</span>
+</div>
+</button>
+<!-- Flash Trigger -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">flash_on</span>
+</div>
+<span class="text-[10px] font-bold uppercase text-slate-500 tracking-tighter">Flash</span>
+</button>
+</div>
+<!-- Mode Navigation -->
+<div class="flex justify-center gap-8 py-2">
+<span class="text-white text-sm font-semibold opacity-40">PHOTO</span>
+<span class="text-primary text-sm font-bold tracking-widest border-b-2 border-primary pb-1">DOCUMENT</span>
+<span class="text-white text-sm font-semibold opacity-40">QR CODE</span>
+</div>
+</div>
+<!-- iOS Bottom Home Bar -->
+<div class="relative z-20 flex justify-center pb-2">
+<div class="w-32 h-1.5 bg-white/30 rounded-full"></div>
+</div>
+<!-- Status Indicators Overlay -->
+<div class="absolute bottom-36 left-0 w-full px-8 pointer-events-none z-10">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<span class="text-white text-xs font-medium tracking-wide drop-shadow-md">BLUE LASER SCAN ACTIVE</span>
+<span class="text-white text-xs font-mono drop-shadow-md">100%</span>
+</div>
+<div class="h-1 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full shadow-[0_0_10px_#007bff]"></div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

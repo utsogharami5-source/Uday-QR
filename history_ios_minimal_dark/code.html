@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0A84FF", // iOS Vivid Blue
+                        "background-dark": "#010101", // True OLED Black
+                        "surface-dark": "#1C1C1E", // iOS Dark Grey
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(28, 28, 30, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 min-h-screen flex flex-col">
+<div class="flex-1 w-full max-w-md mx-auto bg-black shadow-2xl overflow-hidden flex flex-col min-h-screen border-x border-white/5">
+<header class="pt-12 px-6 pb-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-500">ScanHistory Pro</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark text-slate-300">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-white">Activity</h1>
+</header>
+<div class="px-6 py-4">
+<div class="flex h-11 items-center justify-center rounded-xl bg-surface-dark p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 bg-slate-700 shadow-sm text-primary text-sm font-semibold transition-all">
+<span class="truncate">Scanned</span>
+<input checked="" class="hidden" name="filter" type="radio" value="Scanned"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 text-slate-400 text-sm font-medium transition-all">
+<span class="truncate">Generated</span>
+<input class="hidden" name="filter" type="radio" value="Generated"/>
+</label>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 space-y-1">
+<div class="py-2 text-xs font-bold text-slate-500 uppercase tracking-widest mt-4">Today</div>
+<div class="flex items-center gap-4 py-4 border-b border-white/5 group cursor-pointer">
+<div class="flex items-center justify-center rounded-2xl bg-primary/20 text-primary shrink-0 size-14">
+<span class="material-symbols-outlined text-3xl">qr_code_2</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-white text-base font-semibold">Starbucks Rewards</p>
+<p class="text-slate-500 text-sm">10:45 AM • Coffee Shop</p>
+</div>
+<div class="shrink-0 text-slate-600 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-b border-white/5 group cursor-pointer">
+<div class="flex items-center justify-center rounded-2xl bg-primary/20 text-primary shrink-0 size-14">
+<span class="material-symbols-outlined text-3xl">wifi</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-white text-base font-semibold">Guest_WiFi_Express</p>
+<p class="text-slate-500 text-sm">09:12 AM • Airport Lounge</p>
+</div>
+<div class="shrink-0 text-slate-600 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="py-2 text-xs font-bold text-slate-500 uppercase tracking-widest mt-6">Yesterday</div>
+<div class="flex items-center gap-4 py-4 border-b border-white/5 group cursor-pointer">
+<div class="flex items-center justify-center rounded-2xl bg-primary/20 text-primary shrink-0 size-14">
+<span class="material-symbols-outlined text-3xl">shopping_cart</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-white text-base font-semibold">Smart Label - Tech Gadget</p>
+<p class="text-slate-500 text-sm">04:20 PM • Retail Store</p>
+</div>
+<div class="shrink-0 text-slate-600 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-b border-white/5 group cursor-pointer">
+<div class="flex items-center justify-center rounded-2xl bg-primary/20 text-primary shrink-0 size-14">
+<span class="material-symbols-outlined text-3xl">person</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-white text-base font-semibold">Contact: Alex Rivers</p>
+<p class="text-slate-500 text-sm">02:15 PM • Business Card</p>
+</div>
+<div class="shrink-0 text-slate-600 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-b border-white/5 group cursor-pointer">
+<div class="flex items-center justify-center rounded-2xl bg-primary/20 text-primary shrink-0 size-14">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-white text-base font-semibold">Le Petit Bistro Menu</p>
+<p class="text-slate-500 text-sm">12:30 PM • Restaurant</p>
+</div>
+<div class="shrink-0 text-slate-600 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<nav class="border-t border-white/5 glass-card px-6 py-4 flex justify-between items-center safe-area-bottom">
+<a class="flex flex-col items-center gap-1.5 text-slate-500 transition-colors" href="#">
+<span class="material-symbols-outlined">center_focus_weak</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Scan</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-slate-500 transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Create</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">history</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Activity</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-slate-500 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>
